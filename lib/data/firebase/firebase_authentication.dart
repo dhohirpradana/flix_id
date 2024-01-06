@@ -37,10 +37,10 @@ class FirebaseAuthentication implements Authentication {
 
   @override
   Future<Result<String>> register(
-      {required String username, required String password}) async {
+      {required String email, required String password}) async {
     try {
       var userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: username, password: password);
+          email: email, password: password);
       return Result.success(userCredential.user!.uid);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return Result.failed('${e.message}');

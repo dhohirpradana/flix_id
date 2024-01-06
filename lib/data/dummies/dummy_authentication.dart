@@ -23,7 +23,7 @@ class DummyAuthentication implements Authentication {
   }
 
   @override
-  Future<Result<String>> register({required String username, required String password}) {
+  Future<Result<String>> register({required String email, required String password}) {
     // TODO: implement register
     throw UnimplementedError();
   }

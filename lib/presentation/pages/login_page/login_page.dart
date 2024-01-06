@@ -19,7 +19,7 @@ class LoginPage extends ConsumerWidget {
         child: ElevatedButton(
             onPressed: () {
               Login login = ref.watch(loginProvider);
-              login(LoginParams(email: "dhohir.pradana@icloud.com", password: "2wsx1qaz"))
+              login(LoginParam(email: "dhohir.pradana@icloud.com", password: "2wsx1qaz"))
                   .then((result) {
                 if (result is Success) {
                   Navigator.of(context).push(MaterialPageRoute(

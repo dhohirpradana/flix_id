@@ -4,16 +4,16 @@ import '../../entities/result.dart';
 import '../../entities/user.dart';
 import '../usecase.dart';
 
-part 'login_params.dart';
+part 'login_param.dart';
 
-class Login implements UseCase<Result<User>, LoginParams> {
+class Login implements UseCase<Result<User>, LoginParam> {
   final Authentication authentication;
   final UserRepository userRepository;
 
   Login({required this.authentication, required this.userRepository});
 
   @override
-  Future<Result<User>> call(LoginParams params) async {
+  Future<Result<User>> call(LoginParam params) async {
     var idResult = await authentication.login(
         email: params.email, password: params.password);
 

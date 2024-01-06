@@ -2,7 +2,7 @@ import '../../domain/entities/result.dart';
 
 abstract interface class Authentication {
   Future<Result<String>> register({
-    required String username,
+    required String email,
     required String password,
   });
 

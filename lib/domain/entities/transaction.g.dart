@@ -21,7 +21,7 @@ _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
       ticketAmount: json['ticketAmount'] as int?,
       ticketPrice: json['ticketPrice'] as int?,
       adminFee: json['adminFee'] as int,
-      totalPrice: json['totalPrice'] as int,
+      total: json['total'] as int,
     );
 
 Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
@@ -37,5 +37,5 @@ Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
       'ticketAmount': instance.ticketAmount,
       'ticketPrice': instance.ticketPrice,
       'adminFee': instance.adminFee,
-      'totalPrice': instance.totalPrice,
+      'total': instance.total,
     };

@@ -16,6 +16,9 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class _MainPageState extends ConsumerState<MainPage> {
+  PageController pageController = PageController();
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     ref.listen(userDataProvider, (previous, next) {
@@ -31,22 +34,24 @@ class _MainPageState extends ConsumerState<MainPage> {
       ),
       body: Stack(
         children: [
-          Center(
-            child: Column(
-              children: [
-                Text(ref.watch(userDataProvider).when(
-                    data: (data) => data.toString(),
-                    error: (error, stackTrace) => 'Error',
-                    loading: () => 'loading')),
-                ElevatedButton(
-                  onPressed: () {
-                    ref.read(userDataProvider.notifier).logout();
-                  },
-                  child: const Text('Logout'),
-                ),
-                verticalSpace(50),
-              ],
-            ),
+          PageView(
+            controller: pageController,
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            children: const [
+              Center(
+                child: Text('Movies Page'),
+              ),
+              Center(
+                child: Text('Ticket Page'),
+              ),
+              Center(
+                child: Text('Profile Page'),
+              ),
+            ],
           ),
           BottomNavBar(items: [
             BottomNavBarItem(

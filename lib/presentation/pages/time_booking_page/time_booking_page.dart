@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:flix_id/domain/entities/movie_detail.dart';
+import 'package:flix_id/domain/entities/transaction.dart';
+import 'package:flix_id/presentation/misc/constants.dart';
 import 'package:flix_id/presentation/misc/method.dart';
+import 'package:flix_id/presentation/providers/user_data/user_data_provider.dart';
 import 'package:flix_id/presentation/widgets/back_navigation_bar.dart';
 import 'package:flix_id/presentation/widgets/network_image_card.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +36,7 @@ class _TimeBookingPageState extends ConsumerState<TimeBookingPage> {
     return DateTime(now.year, now.month, now.day + index);
   });
 
-  final List<int> _hourOptions = List.generate(8, (index) => index + 12);
+  List<int> _hourOptions = List.generate(8, (index) => 12 + index + 1);
 
   String? selectedTheater;
   DateTime? selectedDate;
@@ -68,7 +73,11 @@ class _TimeBookingPageState extends ConsumerState<TimeBookingPage> {
               options: _theaterOptions,
               selectedOption: selectedTheater,
               onOptionTap: (String option) => setState(() {
+                if (option == selectedTheater) return;
                 selectedTheater = option;
+                final random = Random().nextInt(8 - 3) + 3;
+                _hourOptions = _hourOptions =
+                    List.generate(random, (index) => 12 + index + 1);
               }),
             ),
             verticalSpace(24),
@@ -104,7 +113,53 @@ class _TimeBookingPageState extends ConsumerState<TimeBookingPage> {
                 selectedHour = option;
               }),
             ),
-            ElevatedButton(onPressed: () {}, child: const Text('Next'))
+            IgnorePointer(
+              ignoring: selectedDate == null ||
+                  selectedHour == null ||
+                  selectedTheater == null,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: backgroundColor,
+                        backgroundColor: (selectedDate == null ||
+                                selectedHour == null ||
+                                selectedTheater == null)
+                            ? Colors.grey
+                            : saffron,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {
+                        if (selectedDate == null ||
+                            selectedHour == null ||
+                            selectedTheater == null) return;
+                        Transaction transaction = Transaction(
+                          uid: ref.read(userDataProvider).value!.uid,
+                          title: widget.movieDetail.title,
+                          adminFee: 3000,
+                          total: 0,
+                          watchingTime: DateTime(
+                                  selectedDate!.year,
+                                  selectedDate!.month,
+                                  selectedDate!.day,
+                                  selectedHour!)
+                              .microsecondsSinceEpoch,
+                          teatherName: selectedTheater!,
+                          transactionImage: widget.movieDetail.posterPath,
+                        );
+
+                        ref.read(routerProvider).pushNamed('seat-booking',
+                            extra: (widget.movieDetail, transaction));
+                      },
+                      child: const Text('Next')),
+                ),
+              ),
+            )
           ],
         )
       ],

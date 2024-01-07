@@ -9,6 +9,7 @@ import 'package:flix_id/domain/usecases/top_up/top_up_param.dart';
 import 'package:flix_id/domain/usecases/upload_profile_picture/upload_profile_picture.dart';
 import 'package:flix_id/presentation/providers/movie/now_playing_provider.dart';
 import 'package:flix_id/presentation/providers/movie/upcoming_provider.dart';
+import 'package:flix_id/presentation/providers/transaction_data/transaction_data_provider.dart';
 import 'package:flix_id/presentation/providers/usecases/register_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -114,7 +115,7 @@ class UserData extends _$UserData {
 
       if (result.isSuccess) {
         refreashUserData();
-        // TODO: Refresh Transaction Data
+        ref.read(transactionDataProvider.notifier).refreshTransactionData();
       }
     }
   }

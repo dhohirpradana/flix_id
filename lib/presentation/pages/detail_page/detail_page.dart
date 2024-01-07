@@ -1,3 +1,4 @@
+import 'package:flix_id/domain/entities/movie_detail.dart';
 import 'package:flix_id/presentation/misc/constants.dart';
 import 'package:flix_id/presentation/misc/method.dart';
 import 'package:flix_id/presentation/providers/movie/movie_detail_provider.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/entities/movie.dart';
 import 'methods/background.dart';
+import 'methods/cast_and_crew.dart';
+import 'methods/movie_overview.dart';
 import 'methods/movie_short_info.dart';
 
 class DetailPage extends ConsumerWidget {
@@ -51,12 +54,12 @@ class DetailPage extends ConsumerWidget {
                       context: context,
                     ),
                     verticalSpace(20),
-                    // ...movieOverview(),
+                    ...movieOverview(asyncMovieDetail),
                     verticalSpace(40)
                   ],
                 ),
               ),
-              // ...castAndCrew(),
+              ...castAndCrew(movie: movie, ref: ref),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
@@ -68,8 +71,15 @@ class DetailPage extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {},
-                  child: const Text('Buy Ticket'),
+                  onPressed: () {
+                    MovieDetail? movieDetail = asyncMovieDetail.valueOrNull;
+
+                    if (movieDetail != null) {
+                      ref.read(routerProvider).pushNamed('time-booking',
+                          extra: asyncMovieDetail.value);
+                    }
+                  },
+                  child: const Text('Book this movie'),
                 ),
               )
             ],

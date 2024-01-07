@@ -10,10 +10,10 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(routes: [
       GoRoute(
         path: '/main',
         name: 'main',
-        builder: (context, state) => MainPage(),
+        builder: (context, state) => const MainPage(),
       ),
       GoRoute(
           path: '/login',
           name: 'login',
-          builder: (context, state) => const LoginPage()),
+          builder: (context, state) => LoginPage()),
     ], initialLocation: '/login', debugLogDiagnostics: false);

@@ -15,6 +15,7 @@ class FirebaseAuthentication implements Authentication {
   @override
   Future<Result<String>> login(
       {required String email, required String password}) async {
+    print('email: $email, password: $password');
     try {
       var userCredential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);

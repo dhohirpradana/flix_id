@@ -1,5 +1,5 @@
 import 'package:flix_id/presentation/extensions/build_context_extension.dart';
-import 'package:flix_id/presentation/misc/method.dart';
+import 'package:flix_id/presentation/pages/profile_page/profile_page.dart';
 import 'package:flix_id/presentation/providers/user_data/user_data_provider.dart';
 import 'package:flix_id/presentation/widgets/bottom_nav_bar.dart';
 import 'package:flix_id/presentation/widgets/bottom_nav_bar_item.dart';
@@ -29,9 +29,6 @@ class _MainPageState extends ConsumerState<MainPage> {
       }
     });
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main Page'),
-      ),
       body: Stack(
         children: [
           PageView(
@@ -49,18 +46,40 @@ class _MainPageState extends ConsumerState<MainPage> {
                 child: Text('Ticket Page'),
               ),
               Center(
-                child: Text('Profile Page'),
+                child: ProfilePage(),
               ),
             ],
           ),
-          BottomNavBar(items: [
-            BottomNavBarItem(
-                index: 0,
-                isActive: true,
-                label: 'Home',
-                icon: 'assets/movie.png',
-                activeIcon: 'assets/movie-selected.png'),
-          ], onTap: (index) {}, currentIndex: 0)
+          BottomNavBar(
+              items: [
+                BottomNavBarItem(
+                    index: 0,
+                    isActive: currentIndex == 0,
+                    label: 'Home',
+                    icon: 'assets/movie.png',
+                    activeIcon: 'assets/movie-selected.png'),
+                BottomNavBarItem(
+                    index: 1,
+                    isActive: currentIndex == 1,
+                    label: 'Home',
+                    icon: 'assets/ticket.png',
+                    activeIcon: 'assets/ticket-selected.png'),
+                BottomNavBarItem(
+                    index: 2,
+                    isActive: currentIndex == 2,
+                    label: 'Home',
+                    icon: 'assets/profile.png',
+                    activeIcon: 'assets/profile-selected.png'),
+              ],
+              onTap: (index) {
+                setState(() {
+                  currentIndex = index;
+                  pageController.animateToPage(currentIndex,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeInOut);
+                });
+              },
+              currentIndex: currentIndex)
         ],
       ),
     );

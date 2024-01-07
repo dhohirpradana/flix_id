@@ -7,14 +7,14 @@ import '../create_transaction/create_transaction_param.dart';
 import '../usecase.dart';
 import 'top_up_param.dart';
 
-class Topup implements UseCase<Result<void>, TopupParam> {
+class TopUp implements UseCase<Result<void>, TopUpParam> {
   final TransactionRepository _transactionRepository;
 
-  Topup({required TransactionRepository transactionRepository})
+  TopUp({required TransactionRepository transactionRepository})
       : _transactionRepository = transactionRepository;
 
   @override
-  Future<Result<void>> call(TopupParam params) async {
+  Future<Result<void>> call(TopUpParam params) async {
     CreateTransaction createTransaction =
         CreateTransaction(transactionRepository: _transactionRepository);
 

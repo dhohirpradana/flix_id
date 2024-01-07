@@ -6,6 +6,6 @@ import '../repositories/transaction_repository/transaction_repository_provider.d
 part 'top_up_provider.g.dart';
 
 @riverpod
-Topup topUp(TopUpRef ref) => Topup(
+TopUp topUp(TopUpRef ref) => TopUp(
       transactionRepository: ref.watch(transactionRepositoryProvider),
     );

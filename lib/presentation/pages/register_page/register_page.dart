@@ -23,7 +23,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   Widget build(BuildContext context) {
     ref.listen(userDataProvider, (previous, next) {
       if (next is AsyncData && next.value != null) {
-        ref.read(routerProvider).goNamed('mail');
+        ref.read(routerProvider).goNamed('home');
       } else if (next is AsyncError) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

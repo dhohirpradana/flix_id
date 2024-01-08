@@ -62,13 +62,13 @@ class _MainPageState extends ConsumerState<MainPage> {
                 BottomNavBarItem(
                     index: 1,
                     isActive: currentIndex == 1,
-                    label: 'Home',
+                    label: 'Ticket',
                     icon: 'assets/ticket.png',
                     activeIcon: 'assets/ticket-selected.png'),
                 BottomNavBarItem(
                     index: 2,
                     isActive: currentIndex == 2,
-                    label: 'Home',
+                    label: 'Profile',
                     icon: 'assets/profile.png',
                     activeIcon: 'assets/profile-selected.png'),
               ],

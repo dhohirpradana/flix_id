@@ -81,7 +81,7 @@ class UserData extends _$UserData {
     }
   }
 
-  Future<void> refreashUserData() async {
+  Future<void> refreshUserData() async {
     state = const AsyncLoading();
 
     GetLoggedInUser getLoggedInUser = ref.read(getLoggedInUserProvider);
@@ -114,7 +114,7 @@ class UserData extends _$UserData {
       var result = await topUp(TopUpParam(userId: userId, amount: amount));
 
       if (result.isSuccess) {
-        refreashUserData();
+        refreshUserData();
         ref.read(transactionDataProvider.notifier).refreshTransactionData();
       }
     }

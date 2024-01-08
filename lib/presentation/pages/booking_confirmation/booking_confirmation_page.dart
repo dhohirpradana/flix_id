@@ -138,7 +138,7 @@ class BookingCnfirmationPage extends ConsumerWidget {
                                 .refreshTransactionData();
                             ref
                                 .read(userDataProvider.notifier)
-                                .refreashUserData();
+                                .refreshUserData();
                             ref.read(routerProvider).goNamed('main');
                           case Failed(:final message):
                             context.showSnackBar(message);

@@ -5,7 +5,6 @@ part 'transaction.g.dart';
 
 @freezed
 class Transaction with _$Transaction {
-
   factory Transaction({
     String? id,
     required String uid,
@@ -21,5 +20,6 @@ class Transaction with _$Transaction {
     required int total,
   }) = _Transaction;
 
-  factory Transaction.fromJson(Map<String, dynamic> json) => _$TransactionFromJson(json);
+  factory Transaction.fromJson(Map<String, dynamic> json) =>
+      _$TransactionFromJson(json);
 }

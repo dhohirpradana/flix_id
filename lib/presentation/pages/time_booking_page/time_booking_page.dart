@@ -53,7 +53,7 @@ class _TimeBookingPageState extends ConsumerState<TimeBookingPage> {
             Padding(
               padding: const EdgeInsets.all(24),
               child: BackNavigationBar(
-                title: widget.movieDetail.title,
+                widget.movieDetail.title,
                 onTap: () => ref.read(routerProvider).pop(),
               ),
             ),

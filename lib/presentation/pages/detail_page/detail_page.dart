@@ -34,7 +34,7 @@ class DetailPage extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BackNavigationBar(
-                      title: movie.title,
+                      movie.title,
                       onTap: () => ref.read(routerProvider).pop(),
                     ),
                     verticalSpace(24),

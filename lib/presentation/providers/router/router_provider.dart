@@ -1,5 +1,6 @@
 import 'package:flix_id/domain/entities/movie.dart';
 import 'package:flix_id/domain/entities/movie_detail.dart';
+import 'package:flix_id/presentation/pages/booking_confirmation/booking_confirmation_page.dart';
 import 'package:flix_id/presentation/pages/detail_page/detail_page.dart';
 import 'package:flix_id/presentation/pages/login_page/login_page.dart';
 import 'package:flix_id/presentation/pages/main_page/main_page.dart';
@@ -51,4 +52,10 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(routes: [
           transactionDetail: state.extra as (MovieDetail, Transaction),
         ),
       ),
+      GoRoute(
+        path: '/booking-confirmation',
+        name: 'booking-confirmation',
+        builder: (context, state) => BookingCnfirmationPage(
+            transactionDetail: state.extra as (MovieDetail, Transaction)),
+      )
     ], initialLocation: '/login', debugLogDiagnostics: false);

@@ -5,7 +5,7 @@ class BackNavigationBar extends StatelessWidget {
   final String? title;
   final VoidCallback? onTap;
 
-  const BackNavigationBar({super.key, this.title, this.onTap});
+  const BackNavigationBar(this.title, {super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
